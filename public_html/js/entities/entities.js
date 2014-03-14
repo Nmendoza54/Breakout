@@ -57,6 +57,11 @@ game.BallEntity = me.ObjectEntity.extend ({
                         me.audio.play("paddle-sfx");
                     }
                 }
+                else if (collision)
+                if(collision.type === "brick") {
+                  this.vel.y *= -1;
+                  this.vel.x *= -1;
+                }
                 
                 collision = this.updateMovement ();
                 
@@ -74,9 +79,8 @@ game.BallEntity = me.ObjectEntity.extend ({
                 
                 }
                 this.previousVelocity = this.vel.clone();
-                
-                return true;
                     }
+                  
 });
  game.BrickEntity = me.ObjectEntity.extend ({
      init:function (x, y, settings){
@@ -84,7 +88,13 @@ game.BallEntity = me.ObjectEntity.extend ({
          settings.spritewidth = "32";
          settings.spriteheight = "16"; 
          this.parent(x, y, settings) ; 
-     }, 
-             update: function () {}
+     
+             this.type ="brick"; 
+        this.collidable = true;
+     },
+             update: function () {
+        
+         
+             } 
      
  });

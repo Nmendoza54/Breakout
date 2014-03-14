@@ -43,6 +43,8 @@ game.HUD.ScoreItem = me.Renderable.extend({
 		// call the parent constructor 
 		// (size does not matter here)
 		this.parent(new me.Vector2d(x, y), 10, 10); 
+                
+                this.font = new me.Font ("courier new", 16, "white");
 		
 		// local copy of the global score
 		this.score = -1;
@@ -61,14 +63,14 @@ game.HUD.ScoreItem = me.Renderable.extend({
 			this.score = game.data.score;
 			return true;
 		}
-		return false;
+		return true;
 	},
-
+ 
 	/**
 	 * draw the score
 	 */
 	draw : function (context) {
-		// draw it baby !
+		this.font.draw (context, "score: ", + this.score );  
 	}
 
 });
